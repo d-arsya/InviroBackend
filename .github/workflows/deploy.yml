@@ -1,0 +1,26 @@
+name: Deploy to Arenhost
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: INVIRO
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build on Arenhost
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd /home/pondoknu/disyfa.cloud/inviro
+            git pull
+            ../../composer update
+            php artisan migrate:fresh --seed
