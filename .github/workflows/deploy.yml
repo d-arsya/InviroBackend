@@ -21,6 +21,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd /home/pondoknu/disyfa.cloud/inviro
+            git restore .
             git pull
             ../../composer update
             php artisan migrate:fresh --seed
