@@ -7,26 +7,27 @@ trait ApiResponder
     protected function success($data, $message = 'Success', $status = 200)
     {
         return response()->json([
-            'success'  => true,
+            'success' => true,
             'message' => $message,
-            'data'    => $data
+            'data' => $data,
         ], $status);
     }
+
     protected function created($data, $message = 'Success')
     {
         return response()->json([
-            'success'  => true,
+            'success' => true,
             'message' => $message,
-            'data'    => $data
+            'data' => $data,
         ], 201);
     }
 
     protected function error($message, $status = 400, $errors = [])
     {
         return response()->json([
-            'success'  => false,
+            'success' => false,
             'message' => $message,
-            'data'  => $errors
+            'data' => $errors,
         ], $status);
     }
 }

@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => env("APP_TIMEZONE", "Asia/Jakarta"),
+    'timezone' => env('APP_TIMEZONE', 'Asia/Jakarta'),
 
     /*
     |--------------------------------------------------------------------------
@@ -123,6 +123,6 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-    'default_password' => env('DEFAULT_PASSWORD', 'password')
+    'default_password' => env('DEFAULT_PASSWORD', 'password'),
 
 ];
