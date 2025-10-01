@@ -8,7 +8,7 @@ trait SpreadSheet
 {
     protected function getByName($spreadSheetId, $sheetName)
     {
-        $link = "https://docs.google.com/spreadsheets/d/$spreadSheetId/gviz/tq?tqx=out:csv&sheet=".$sheetName;
+        $link = "https://docs.google.com/spreadsheets/d/$spreadSheetId/gviz/tq?tqx=out:csv&sheet=".$sheetName['name'];
 
         $response = Http::get($link)->body();
         $rows = array_map('str_getcsv', explode("\n", trim($response)));
@@ -81,7 +81,7 @@ trait SpreadSheet
             $result = [
                 'name' => $dataRow['Nama Pelanggan'],
                 'phone' => $dataRow['Telepon'] ?? '',
-                'date' => $sheetName.'-'.now()->year,
+                'date' => $sheetName['key'].'-'.now()->year,
                 'total_price' => 0,
                 'total_count' => 0,
                 'products' => [],
@@ -155,6 +155,6 @@ trait SpreadSheet
             }
         }
 
-        return $mapped[$usedSheet];
+        return ['name' => $mapped[$usedSheet], 'key' => $usedSheet];
     }
 }
